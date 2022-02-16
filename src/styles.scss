@@ -1,1 +1,48 @@
-/* You can add global styles to this file, and also import other style files */
+.page{
+    padding: 8px;
+   // background-image: radial-gradient(#bcc9fd, #ceabe6);
+    background-image: url("assets/img/sfondo.png");
+    min-height: 100vh;
+}
+
+
+.my-card-body{
+    background-color: white;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-right: 8px;
+    padding-left: 12px;
+}
+
+.my-card-header{
+    background-color: white;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-right: 8px;
+    padding-left: 12px;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.my-card{
+    border-radius: 4px;
+    border: 0;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+    background-color: white;
+}
+
+.cursore{
+    cursor: pointer;
+}
+
+.list-group-item.active {
+    color: #fff;
+    background-color: #6610f2;
+    border-color: rgb(2, 2, 31);
+}
+
+.list-group-item {
+    border-radius: 4px;
+    border: 0;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+}

@@ -1,0 +1,52 @@
+<my-spinner [view]="loading_page"></my-spinner>
+<my-toast [testo]="errore"></my-toast>
+
+<div *ngIf="!loading_page" style="padding-top: 16px;">
+
+    <my-titolo [title]="'CALENDARIO'"></my-titolo>
+
+    <div style="padding-top: 8px;">
+
+        <div class="my-card mb-8">
+            <div class="my-card-header">
+                <span>SELEZIONA EVENTI</span>
+            </div>
+            <div class="my-card-body">
+
+                <h3><i class="bi bi-caret-left-fill cursore" (click)="nexMese(-1)"></i> {{calendario.mese}} <i
+                        class="bi bi-caret-right-fill cursore" (click)="nexMese(1)"></i></h3>
+
+                <div class="table-responsive" style="text-align: center;">
+                    <table class="table table-bordered caption-top">
+
+                        <thead>
+                            <tr>
+                                <th scope="col">LU</th>
+                                <th scope="col">MA</th>
+                                <th scope="col">ME</th>
+                                <th scope="col">GI</th>
+                                <th scope="col">VE</th>
+                                <th scope="col">SA</th>
+                                <th scope="col">DO</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let settimane of calendario.lista">
+                                <th class="cursore" *ngFor="let ele of settimane"
+                                    [ngClass]="{'selettore': ele.attivo == true}"
+                                    [ngClass]="{'impegnato': ele.attivita != '0'}">
+                                    <div (click)="selezionaGiorno(ele)" data-bs-toggle="modal"
+                                        data-bs-target="#infoModal">
+                                        {{ele.giorno}}</div>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<modal-info *ngIf="dettaglio" [dettaglio]="dettaglio" (submit)="reload()"></modal-info>

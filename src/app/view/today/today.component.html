@@ -1,0 +1,27 @@
+<my-spinner [view]="loading_page"></my-spinner>
+<my-toast [testo]="errore"></my-toast>
+
+<div *ngIf="!loading_page" style="padding-bottom: 64px;padding-top: 16px;">
+    <my-titolo [title]="title"></my-titolo>
+    <div class="list-group" style="padding-top: 8px;">
+        <div *ngFor="let item of giornaliero.lista" class="list-group-item list-group-item-action"
+            [ngClass]="{'active': item.is_fatto == true}" aria-current="true">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{item.nome}}</h5>
+                <small>{{item.tipo}}</small>
+            </div>
+            <p class="mb-1">{{item.descrizione}}</p>
+            <small class="cursore" *ngIf="!item.is_fatto" (click)="onUpdGiornaliero(item,1)">Da fare <i
+                    class="bi bi-emoji-frown"></i></small>
+            <small class="cursore" *ngIf="item.is_fatto" (click)="onUpdGiornaliero(item,0)">Fatto <i
+                    class="bi bi-emoji-sunglasses"></i>
+            </small>
+        </div>
+        <div *ngIf="giornaliero.lista.length == 0">
+            <p>NON SONO PREVISTE ATTIVITA' PER OGGI</p>
+        </div>
+
+    </div>
+
+
+</div>

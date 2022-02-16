@@ -1,0 +1,53 @@
+<!-- Modal -->
+<div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="infoModalLabel">DETTAGLIO GIORNO {{dettaglio.giorno}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div *ngIf="elements && elements.length < 1">
+                    NULLA IN SOSPESO
+                </div>
+                <div *ngFor="let item of elements" style="padding-bottom: 8px;">
+                    <h3>{{item.nome}}</h3>
+                    <span>{{item.descrizione}}</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-bs-target="#insertModal" data-bs-toggle="modal">AGGIUNGI</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="insertModal" aria-hidden="true" aria-labelledby="insertModalLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="insertModalLabel">AGGIUNGI A GIORNO {{dettaglio.giorno}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <form #updForm="ngForm" (ngSubmit)="onSubmitNewAttivita(updForm.value)">
+                    <div class="mb-3">
+                        <select class="form-select" aria-label="Default select example" [(ngModel)]="selezionata"
+                            name="id_attivita" required>
+                            <option *ngFor="let item of attivita" [ngValue]="item.id_attivita">{{item.nome}} -
+                                {{item.descrizione}}
+                            </option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" data-bs-target="#infoModal" data-bs-toggle="modal" type="submit"
+                        [disabled]="!updForm.valid">INSERISCI</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-target="#infoModal" data-bs-toggle="modal">ANNULLA</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,125 @@
+<my-spinner [view]="loading_page"></my-spinner>
+<my-toast [testo]="errore"></my-toast>
+
+<div *ngIf="!loading_page" style="padding-bottom: 64px;padding-top: 16px;">
+
+    <my-titolo [title]="title"></my-titolo>
+
+    <div *ngIf="view&&!loading_page" class="d-grid gap-2" style="padding-bottom: 32px;padding-top: 8px;">
+        <button type="button" class="btn btn-danger btn-lg" (click)="onSetAttivita()">NUOVA ATTIVITA</button>
+    </div>
+
+    <div *ngIf="view&&!loading_page" class="list-group">
+        <div *ngFor="let item of attivita" class="list-group-item list-group-item-action" aria-current="true">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{item.nome}}</h5>
+                <small>{{item.tipo}}</small>
+            </div>
+            <p class="mb-1">{{item.descrizione}}</p>
+            <small class="cursore" (click)="onUpdAttivita(item)">Modifica <i
+                    class="bi bi-wrench-adjustable-circle"></i></small>
+        </div>
+
+    </div>
+
+    <div *ngIf="!view&&!nuovo" style="padding-bottom: 32px;">
+
+        <div class="my-card mb-8">
+            <div class="my-card-header">
+                <span>MODIFICA EVENTO</span>
+            </div>
+            <div class="my-card-body">
+
+
+                <form #updForm="ngForm" (ngSubmit)="onSubmitUpdate(updForm.value)">
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Attivita</label>
+                        <input [(ngModel)]="selezionata.nome" name="nome" type="text" class="form-control"
+                            id="exampleFormControlInput1" placeholder="attivita">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Descrizione</label>
+                        <textarea [(ngModel)]="selezionata.descrizione" name="descrizione" class="form-control"
+                            id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <select class="form-select" aria-label="Default select example"
+                            [(ngModel)]="selezionata.id_tipo" name="tipo">
+                            <option *ngFor="let item of combo.tipo_attivita" [ngValue]="item.id">{{item.descrizione}}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div style="visibility: hidden;margin: 0px;padding: 0px;">
+                        <label>Id: </label>
+                        <input [(ngModel)]="selezionata.id_attivita" name="id_attivita" type="text" readonly
+                            class="form-control-plaintext">
+
+                    </div>
+
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary">CONFERMA</button>
+                        <button style="margin-left: 16px;" type="button" class="btn btn-secondary"
+                            (click)="annullaForm()">ANNULLA</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <div *ngIf="!view&&nuovo" style="padding-bottom: 32px;">
+
+        <div class="my-card mb-8">
+            <div class="my-card-header">
+                <span>INSERISCI EVENTO</span>
+            </div>
+            <div class="my-card-body">
+
+
+                <form #updForm="ngForm" (ngSubmit)="onSubmitInsert(updForm.value)">
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput2" class="form-label">Attivita</label>
+                        <input [(ngModel)]="aggiungere.nome" name="nome" type="text" class="form-control"
+                            id="exampleFormControlInput2" placeholder="attivita">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea2" class="form-label">Descrizione</label>
+                        <textarea [(ngModel)]="aggiungere.descrizione" name="descrizione" class="form-control"
+                            id="exampleFormControlTextarea2" rows="3"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <select class="form-select" aria-label="Default select example" [(ngModel)]="aggiungere.id_tipo"
+                            name="tipo">
+                            <option *ngFor="let item of combo.tipo_attivita" [ngValue]="item.id">{{item.descrizione}}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary">CONFERMA</button>
+                        <button style="margin-left: 16px;" type="button" class="btn btn-secondary"
+                            (click)="annullaForm()">ANNULLA</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+</div>

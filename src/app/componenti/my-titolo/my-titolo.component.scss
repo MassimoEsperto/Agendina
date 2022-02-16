@@ -1,0 +1,22 @@
+
+.titolo{
+    background-image: url("../../../assets/img/macchia.png");
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 16px;
+    padding-top: 24px;
+    text-align: center;
+    font-weight: bold;
+    color: blanchedalmond;
+    min-width: 320px;
+}
+
+.flex-center{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
