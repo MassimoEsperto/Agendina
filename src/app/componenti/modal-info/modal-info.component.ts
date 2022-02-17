@@ -14,19 +14,17 @@ export class ModalInfoComponent implements OnInit {
 
   elements: any;
   giornaliere: any;
+  combo: any;
   attivita: any;
-  selezionata: any
+  orario: any
   loading_btn: boolean = false
+  selezionato: any;
 
   constructor(private service: AgendinaService) { }
 
-  ngOnInit(){
-   this.reload()
-  }
-
-  reload(){
+  ngOnInit() {
     this.getDettaglioAttivita()
-    this.getAllAttivita()
+    this.getCombo()
   }
 
 
@@ -35,27 +33,39 @@ export class ModalInfoComponent implements OnInit {
       this.elements = this.giornaliere.filter((i: { id_registro: any; }) => i.id_registro == this.dettaglio.id_registro);
     }
   }
-  
+
 
   onSubmitNewAttivita(ele: any) {
     if (this.loading_btn) return
     this.loading_btn = true
     let payload = {
       id_attivita: ele.id_attivita,
+      id_orario: ele.id_orario,
       id_registro: this.dettaglio.id_registro
     }
     this.setGiornaliero(payload)
   }
 
+  onSelectAttivita(ele: any) {
+    this.selezionato = ele
+  }
+
+  onDeleteAttivita() {
+    if (this.loading_btn) return
+
+    this.loading_btn = true
+    this.delGiornaliero(this.selezionato)
+  }
+
   getDettaglioAttivita() {
 
-    this.giornaliere=null
+    this.giornaliere = null
     this.service.getDettaglioAttivita()
       .subscribe({
         next: (result: any) => {
           this.giornaliere = result
-          if(this.dettaglio)
-          this.elements = this.giornaliere.filter((i: { id_registro: any; }) => i.id_registro == this.dettaglio.id_registro);
+          if (this.dettaglio)
+            this.elements = this.giornaliere.filter((i: { id_registro: any; }) => i.id_registro == this.dettaglio.id_registro);
         },
         error: (error: any) => {
           console.log(error)
@@ -63,17 +73,17 @@ export class ModalInfoComponent implements OnInit {
       })
   }
 
-  getAllAttivita() {
+  getCombo() {
 
-    this.service.getAttivita()
+    this.service.getCombo()
       .subscribe({
         next: (result: any) => {
 
-          this.attivita = result
-       
+          this.combo = result
+
         },
         error: (error: any) => {
-          // this.errore = error
+          console.log(error)
         },
       })
   }
@@ -84,7 +94,22 @@ export class ModalInfoComponent implements OnInit {
       .pipe(finalize(() => this.loading_btn = false))
       .subscribe({
         next: (result: any) => {
-          this.reload()
+          this.getDettaglioAttivita()
+          this.submit.emit(true)
+        },
+        error: (error: any) => {
+          console.log(error)
+        },
+      })
+  }
+
+  delGiornaliero(payload: any) {
+
+    this.service.delGiornaliero(payload)
+      .pipe(finalize(() => this.loading_btn = false))
+      .subscribe({
+        next: (result: any) => {
+          this.getDettaglioAttivita()
           this.submit.emit(true)
         },
         error: (error: any) => {

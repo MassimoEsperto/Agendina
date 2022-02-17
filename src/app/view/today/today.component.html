@@ -7,8 +7,14 @@
         <div *ngFor="let item of giornaliero.lista" class="list-group-item list-group-item-action"
             [ngClass]="{'active': item.is_fatto == true}" aria-current="true">
             <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">{{item.nome}}</h5>
-                <small>{{item.tipo}}</small>
+                <div>
+                    <h5 class="mb-1">{{item.nome}}</h5>
+                </div>
+                <div class="orario">
+                    <small>{{item.tipo}}</small>
+                    <small>{{item.orario}}</small>
+                </div>
+                
             </div>
             <p class="mb-1">{{item.descrizione}}</p>
             <small class="cursore" *ngIf="!item.is_fatto" (click)="onUpdGiornaliero(item,1)">Da fare <i

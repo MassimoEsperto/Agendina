@@ -15,7 +15,6 @@ export class MyToastComponent implements OnInit {
 
   ngOnChanges() {
     if (this.testo != '') {
-      console.log("oooooooooooooooooo")
       setTimeout(() => {
         this.testo = ''
       }, 3000);

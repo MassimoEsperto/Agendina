@@ -16,8 +16,13 @@
                 <small>{{item.tipo}}</small>
             </div>
             <p class="mb-1">{{item.descrizione}}</p>
-            <small class="cursore" (click)="onUpdAttivita(item)">Modifica <i
-                    class="bi bi-wrench-adjustable-circle"></i></small>
+
+            <div class="cestino">
+                <small class="cursore" (click)="onUpdAttivita(item)">Modifica <i
+                        class="bi bi-wrench-adjustable-circle"></i></small>
+                <i class="bi bi-trash3-fill cursore" data-bs-target="#chooseModal2" data-bs-toggle="modal"
+                    (click)="onDelAttivita(item)"></i>
+            </div>
         </div>
 
     </div>
@@ -60,7 +65,7 @@
 
                     </div>
 
-                    <div class="mb-3">
+                    <div>
                         <button type="submit" class="btn btn-primary">CONFERMA</button>
                         <button style="margin-left: 16px;" type="button" class="btn btn-secondary"
                             (click)="annullaForm()">ANNULLA</button>
@@ -122,4 +127,24 @@
     </div>
 
 
+</div>
+
+
+<div class="modal fade" id="chooseModal2" data-bs-backdrop="static" aria-hidden="true"
+    aria-labelledby="chooseModalLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="insertModalLabel2">CONFERMA</h5>
+            </div>
+
+            <div class="modal-body">
+                <div *ngIf="selezionata">Sei sicuro di voler eliminare l'attività {{selezionata.nome}} ?</div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-bs-dismiss="modal" (click)="onDeleteAttivita()">PROCEDI</button>
+                <button class="btn btn-secondary" data-bs-dismiss="modal">ANNULLA</button>
+            </div>
+        </div>
+    </div>
 </div>

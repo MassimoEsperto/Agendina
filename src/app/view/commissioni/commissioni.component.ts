@@ -16,6 +16,7 @@ export class CommissioniComponent implements OnInit {
   nuovo: boolean = false
   attivita: any
   selezionata: any
+
   combo: any
   aggiungere = {
     nome: '',
@@ -33,6 +34,10 @@ export class CommissioniComponent implements OnInit {
 
   onUpdAttivita(ele: any) {
     this.view = false
+    this.selezionata = ele
+  }
+
+  onDelAttivita(ele: any) {
     this.selezionata = ele
   }
 
@@ -56,6 +61,10 @@ export class CommissioniComponent implements OnInit {
   annullaForm() {
     this.view = true
     this.nuovo = false
+  }
+
+  onDeleteAttivita() {
+    this.delAttivita(this.selezionata)
   }
 
   //chiamata ai servizi
@@ -112,6 +121,20 @@ export class CommissioniComponent implements OnInit {
 
     this.service.setAttivita(payload)
       .pipe(finalize(() => this.loading_page = false))
+      .subscribe({
+        next: (result: any) => {
+
+          this.getAttivita()
+        },
+        error: (error: any) => {
+          this.errore = error
+        },
+      })
+  }
+
+  delAttivita(payload: any) {
+
+    this.service.delAttivita(payload)
       .subscribe({
         next: (result: any) => {
 

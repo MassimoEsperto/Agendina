@@ -70,6 +70,15 @@ export class AgendinaService {
         catchError(this.handleError));
   }
 
+  delAttivita(payload: any) {
+
+    return this.http.post(`${this.buildURL("del_attivita")}`, { data: payload })
+      .pipe(map((res) => {
+        return 'ok';
+      }),
+        catchError(this.handleError));
+  }
+
   setAttivita(payload: any) {
 
     return this.http.post(`${this.buildURL("set_attivita")}`, { data: payload })
@@ -82,6 +91,15 @@ export class AgendinaService {
   setGiornaliero(payload: any) {
 
     return this.http.post(`${this.buildURL("set_giornaliero")}`, { data: payload })
+      .pipe(map((res) => {
+        return 'ok';
+      }),
+        catchError(this.handleError));
+  }
+
+  delGiornaliero(payload: any) {
+
+    return this.http.post(`${this.buildURL("del_giornaliero")}`, { data: payload })
       .pipe(map((res) => {
         return 'ok';
       }),
