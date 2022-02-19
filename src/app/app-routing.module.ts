@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CalendarioComponent } from './view/calendario/calendario.component';
-import { CommissioniComponent } from './view/commissioni/commissioni.component';
+import { RoutineComponent } from './view/routine/routine.component';
 import { TodayComponent } from './view/today/today.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/today', pathMatch: 'full' },
   { path: 'calendario', component: CalendarioComponent },
-  { path: 'commissioni', component: CommissioniComponent },
+  { path: 'routine', component: RoutineComponent },
   { path: 'today', component: TodayComponent }
 ];
 

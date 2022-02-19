@@ -6,7 +6,7 @@
     <my-titolo [title]="title"></my-titolo>
 
     <div *ngIf="view&&!loading_page" class="d-grid gap-2" style="padding-bottom: 32px;padding-top: 8px;">
-        <button type="button" class="btn btn-danger btn-lg" (click)="onSetAttivita()">NUOVA ATTIVITA</button>
+        <button type="button" class="btn btn-danger btn-lg" (click)="onSetAttivita()">NUOVA ROUTINE</button>
     </div>
 
     <div *ngIf="view&&!loading_page" class="list-group">
@@ -65,7 +65,7 @@
 
                     </div>
 
-                    <div>
+                    <div class="bottoni">
                         <button type="submit" class="btn btn-primary">CONFERMA</button>
                         <button style="margin-left: 16px;" type="button" class="btn btn-secondary"
                             (click)="annullaForm()">ANNULLA</button>
@@ -111,7 +111,7 @@
                         </select>
                     </div>
 
-                    <div class="mb-3">
+                    <div class="bottoni">
                         <button type="submit" class="btn btn-primary">CONFERMA</button>
                         <button style="margin-left: 16px;" type="button" class="btn btn-secondary"
                             (click)="annullaForm()">ANNULLA</button>

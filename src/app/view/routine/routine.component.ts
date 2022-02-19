@@ -3,11 +3,11 @@ import { finalize } from 'rxjs/operators';
 import { AgendinaService } from 'src/app/services/agendina.service';
 
 @Component({
-  selector: 'commissioni',
-  templateUrl: './commissioni.component.html',
-  styleUrls: ['./commissioni.component.scss']
+  selector: 'routine',
+  templateUrl: './routine.component.html',
+  styleUrls: ['./routine.component.scss']
 })
-export class CommissioniComponent implements OnInit {
+export class RoutineComponent implements OnInit {
 
   loading_btn: boolean = false
   loading_page: boolean = false
@@ -23,7 +23,7 @@ export class CommissioniComponent implements OnInit {
     descrizione: '',
     id_tipo: 1
   }
-  title: string = "GESTIONE ATTIVITA'"
+  title: string = "GESTIONE ROUTINE"
 
   constructor(private service: AgendinaService) { }
 
