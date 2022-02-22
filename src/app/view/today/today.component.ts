@@ -15,6 +15,8 @@ export class TodayComponent implements OnInit {
   giornaliero: any
   title: string = "";
 
+  view_buongiorno: boolean = false
+
   constructor(private service: AgendinaService) { }
 
   ngOnInit() {
@@ -42,8 +44,19 @@ export class TodayComponent implements OnInit {
       .pipe(finalize(() => this.loading_page = false))
       .subscribe({
         next: (result: any) => {
-          this.giornaliero = result
-          this.title = "OGGI " + this.giornaliero.today.giorno + " " + this.giornaliero.today.mese
+          this.view_buongiorno = Boolean(result.today.buongiorno)
+          if (this.view_buongiorno) {
+            setTimeout(() => {
+              this.view_buongiorno = false
+              this.giornaliero = result
+              this.title = "OGGI " + this.giornaliero.today.giorno + " " + this.giornaliero.today.mese
+            }, 5000);
+          } else {
+            this.giornaliero = result
+            this.title = "OGGI " + this.giornaliero.today.giorno + " " + this.giornaliero.today.mese
+          }
+
+
         },
         error: (error: any) => {
           this.errore = error

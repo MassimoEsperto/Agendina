@@ -13,6 +13,7 @@ import { MySpinnerComponent } from './componenti/my-spinner/my-spinner.component
 import { MyToastComponent } from './componenti/my-toast/my-toast.component';
 import { MyTitoloComponent } from './componenti/my-titolo/my-titolo.component';
 import { RoutineComponent } from './view/routine/routine.component';
+import { BuonGiornoComponent } from './componenti/buon-giorno/buon-giorno.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { RoutineComponent } from './view/routine/routine.component';
     MySpinnerComponent,
     MyToastComponent,
     MyTitoloComponent,
-    RoutineComponent
+    RoutineComponent,
+    BuonGiornoComponent
   ],
   imports: [
     BrowserModule,

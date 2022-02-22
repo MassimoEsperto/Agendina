@@ -1,7 +1,7 @@
 <my-spinner [view]="loading_page"></my-spinner>
 <my-toast [testo]="errore"></my-toast>
 
-<div *ngIf="!loading_page" style="padding-bottom: 64px;padding-top: 16px;">
+<div *ngIf="!loading_page&&giornaliero" style="padding-bottom: 64px;padding-top: 16px;" class="animate__animated animate__rubberBand">
     <my-titolo [title]="title"></my-titolo>
     <div class="list-group" style="padding-top: 8px;">
         <div *ngFor="let item of giornaliero.lista" class="list-group-item list-group-item-action"
@@ -30,4 +30,8 @@
     </div>
 
 
+</div>
+
+<div *ngIf="!loading_page&&view_buongiorno">
+<buon-giorno></buon-giorno>
 </div>
