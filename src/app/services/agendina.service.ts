@@ -14,7 +14,7 @@ export class AgendinaService {
 
   buildURL(operation: string = ""): string {
 
-    let URL: string = `http://miagenda.altervista.org/web-services/applicazione/`;
+    let URL: string = `https://miagenda.altervista.org/web-services/applicazione/`;
 
     URL = URL + operation + ".php"
 

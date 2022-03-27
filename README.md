@@ -34,4 +34,4 @@ Password: S5dWaPRfw89r
 Tipo di connessione: PASV (modalità passiva)
 
 ## deploy
-ng build --base-href "/versione_1/"
+ng build --base-href "/wolly/"
